@@ -1,29 +1,26 @@
-version: '3.3'
+version: '3.9'
 
 services:
   postgresql:
-    image: postgresql
+    image: postgres:latest
+    restart: always
     networks:
       - api-node
     ports:
       - 10002:5432
     environment:
       - POSTGRES_USER=apinode
-      - POSTGRE_PASSWORD=apinodepass
+      - POSTGRES_PASSWORD=apinodepass
   mongodb:
-    image: mongodb
+    image: mongo:latest
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=apinode
+      - MONGO_INITDB_ROOT_PASSWORD=apinodepass
     networks:
       - api-node
     ports:
       - 10001:27017
-  app:
-    depends_on:
-      - postgresql
-      - mongodb
-    networks:
-      - api-node
-    ports:
-      - 10000:80
 
 networks:
   api-node:
