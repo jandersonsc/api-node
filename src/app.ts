@@ -1,11 +1,24 @@
 import express, { Application } from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
 import appRouter from './routes'
-import { getNewQRCode } from './services/WhatsappServices.ts/ConnectService'
+
+dotenv.config()
+
+import './database'
+import './database/connections/mongo'
 
 const app: Application = express()
-app.use(express.json())
-app.use('/api', appRouter)
+const corsOptions: cors.CorsOptions = {
+  origin: ['*']
+}
 
-// getNewQRCode()
+app.use(cors(corsOptions))
+app.use(express.json())
+app.use(express.urlencoded({
+  extended: true
+}))
+
+app.use('/api', appRouter)
 
 export default app

@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
-import { getNewQRCode } from "../services/WhatsappServices.ts/ConnectService"
-import SendMessage from "../services/WhatsappServices.ts/SendMessageService"
-import { verifyIfNumberIsOnWhatsapp } from "../services/WhatsappServices.ts/VerifyNumberService"
+import { getNewQRCode } from "../services/WhatsappServices/ConnectService"
+import SendMessage from "../services/WhatsappServices/SendMessageService"
+import { verifyIfNumberIsOnWhatsapp } from "../services/WhatsappServices/VerifyNumberService"
 
 export const getQRCode = async (req: Request, res: Response) => {
   getNewQRCode()
